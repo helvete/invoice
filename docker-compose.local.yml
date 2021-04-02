@@ -3,23 +3,21 @@ services:
   backend:
     environment:
       TZ: "Etc/UTC"
+      PG_DATABASE: ${PG_DATABASE}
+      PG_USER: ${PG_USER}
+      PG_PASSWORD: ${PG_PASSWORD}
+      PG_PORT: ${PG_PORT}
+      PG_HOST: ${PG_HOST}
+      PG_DATASOURCE_NAME: ${PG_DATASOURCE_NAME}
+      PG_DATASOURCE_CLASS: ${PG_DATASOURCE_CLASS}
     build:
       context: .
       dockerfile: ./.docker/Dockerfile-backend
       args:
-        DB_DATABASE: ${PG_DATABASE}
-        DB_USER: ${PG_USER}
-        DB_PASSWORD: ${PG_PASSWORD}
-        DB_PORT: ${PG_PORT}
-        DB_HOST: ${PG_HOST}
-        DB_DATASOURCE_NAME: ${PG_DATASOURCE_NAME}
-        DB_DATASOURCE_CLASS: ${PG_DATASOURCE_CLASS}
         APP_ENV: ${APP_ENV}
         JWT_KEY_STRING: ${JWT_KEY_STRING}
     container_name: invoice_backend
     restart: "no"
-    depends_on:
-      - rdbms
     ports:
       - "8078:8080"
   rdbms:

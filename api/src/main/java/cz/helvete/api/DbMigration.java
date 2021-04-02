@@ -22,7 +22,7 @@ public class DbMigration {
     @Inject
     Logger log;
 
-    @Resource(lookup = "PGSGL_DS")
+    @Resource(lookup = "${ENV=PG_DATASOURCE_NAME}")
     DataSource dataSource;
 
     @PostConstruct

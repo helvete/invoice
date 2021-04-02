@@ -51,14 +51,14 @@
     <connector-resource pool-name="jms/__defaultConnectionFactory-Connection-Pool" object-type="system-all-req" jndi-name="jms/__defaultConnectionFactory"></connector-resource>
     <context-service object-type="system-all" jndi-name="concurrent/__defaultContextService"></context-service>
     <managed-thread-factory object-type="system-all" jndi-name="concurrent/__defaultManagedThreadFactory"></managed-thread-factory>
-    <jdbc-connection-pool driver-classname="" datasource-classname="DB_DATASOURCE_CLASS" name="DB_DATASOURCE_NAME" res-type="javax.sql.DataSource">
-      <property name="password" value="DB_PASSWORD"></property>
-      <property name="databaseName" value="DB_DATABASE"></property>
-      <property name="serverName" value="DB_HOST"></property>
-      <property name="user" value="DB_USER"></property>
-      <property name="portNumber" value="DB_PORT"></property>
+    <jdbc-connection-pool driver-classname="" datasource-classname="${ENV=PG_DATASOURCE_CLASS}" name="${ENV=PG_DATASOURCE_NAME}" res-type="javax.sql.DataSource">
+      <property name="password" value="${ENV=PG_PASSWORD}"></property>
+      <property name="databaseName" value="${ENV=PG_DATABASE}"></property>
+      <property name="serverName" value="${ENV=PG_HOST}"></property>
+      <property name="user" value="${ENV=PG_USER}"></property>
+      <property name="portNumber" value="${ENV=PG_PORT}"></property>
     </jdbc-connection-pool>
-    <jdbc-resource pool-name="DB_DATASOURCE_NAME" jndi-name="DB_DATASOURCE_NAME"></jdbc-resource>
+    <jdbc-resource pool-name="${ENV=PG_DATASOURCE_NAME}" jndi-name="${ENV=PG_DATASOURCE_NAME}"></jdbc-resource>
   </resources>
   <servers>
     <server config-ref="server-config" name="server">
@@ -71,7 +71,7 @@
       <resource-ref ref="jms/__defaultConnectionFactory"></resource-ref>
       <resource-ref ref="concurrent/__defaultContextService"></resource-ref>
       <resource-ref ref="concurrent/__defaultManagedThreadFactory"></resource-ref>
-      <resource-ref ref="DB_DATASOURCE_NAME"></resource-ref>
+      <resource-ref ref="${ENV=PG_DATASOURCE_NAME}"></resource-ref>
     </server>
   </servers>
   <nodes>

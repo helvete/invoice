@@ -13,7 +13,7 @@ import javax.persistence.PersistenceContext;
 public class CdiInject {
 
     @Produces
-    @PersistenceContext(name="PGSGL_DS", unitName="PGSGL_DS")
+    @PersistenceContext(name="PGSQL_DS", unitName="PGSQL_DS")
     EntityManager em;
 
     @Inject

@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
     <display-name>Invoice app - API module</display-name>
     <persistence-context-ref>
-        <persistence-context-ref-name>PGSGL_DS</persistence-context-ref-name>
-        <persistence-unit-name>PGSGL_DS</persistence-unit-name>
+        <persistence-context-ref-name>${ENV=PG_DATASOURCE_NAME}</persistence-context-ref-name>
+        <persistence-unit-name>${ENV=PG_DATASOURCE_NAME}</persistence-unit-name>
     </persistence-context-ref>
 </web-app>

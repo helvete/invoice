@@ -24,23 +24,13 @@ RUN --mount=type=cache,target=/root/.m2 \
 
 FROM payara/server-full:5.194
 
-ARG DB_DATABASE
-ARG DB_USER
-ARG DB_PASSWORD
-ARG DB_PORT
-ARG DB_HOST
-ARG DB_DATASOURCE_NAME
-ARG DB_DATASOURCE_CLASS
 ARG TARGET_DIR=/opt/payara/appserver/glassfish/domains/production
 
 USER payara
 COPY --chown=payara:payara ./.docker/backend/logging.properties ${TARGET_DIR}/config/logging.properties
 COPY ./.docker/backend/cacerts.jks ${TARGET_DIR}/config/cacerts.jks
 COPY ./.docker/backend/keystore.jks ${TARGET_DIR}/config/keystore.jks
-COPY ./.docker/backend/domain.tpl.xml ${TARGET_DIR}/config/domain.xml
-COPY ./.docker/backend/env_replace /env_replace
+COPY ./.docker/backend/domain.xml ${TARGET_DIR}/config/domain.xml
 COPY ./.docker/backend/postgresql-42.2.18.jar ${TARGET_DIR}/lib/postgresql-42.2.18.jar
-
-RUN /env_replace ${TARGET_DIR}/config/domain.xml
 
 COPY --from=maven-build-process base/api/target/invoice.war $DEPLOY_DIR
