@@ -1,0 +1,16 @@
+#!/bin/sh
+
+if [ ! -f "$1" ];
+then
+	echo domain.xml template missing!
+    exit 1
+fi
+
+echo Patching domain.xml
+ENV_VARS="DB_PASSWORD DB_DATABASE DB_HOST DB_USER DB_PORT DB_DATASOURCE_NAME DB_DATASOURCE_CLASS"
+for CURRENT in ${ENV_VARS}; do
+	eval "DOUBLE=$\"$CURRENT\"" # env variable name
+	eval "DOUBLE=$DOUBLE"       # env variable value
+	sed -i "s/$CURRENT/$DOUBLE/g" $1
+done
+echo Done!

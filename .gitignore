@@ -1,0 +1,4 @@
+*.swp
+tags
+.docker/backend/postgresql-*.jar
+.env

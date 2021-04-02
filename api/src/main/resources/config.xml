@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<config>
+    <jwt>
+        <algorithm>HS512</algorithm>
+        <keyString>${env.JWT_KEY_STRING}</keyString>
+        <validityMillis>86400000</validityMillis>
+    </jwt>
+    <environment>${build.profile.id}</environment>
+    <bcrypt>
+        <rounds>${bcrypt.rounds}</rounds>
+    </bcrypt>
+</config>

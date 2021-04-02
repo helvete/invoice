@@ -1,0 +1,7 @@
+FROM postgres:10-alpine
+
+ENV LANG cs_CZ.utf8
+ENV TZ='Etc/UTC'
+
+COPY ./.docker/rdbms/00*.sh /docker-entrypoint-initdb.d/
+COPY ./.docker/rdbms/*.conf /
