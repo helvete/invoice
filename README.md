@@ -11,3 +11,6 @@ invoice application
 - JsonIgnore
 - upgrade flyway + hookup schema, effective role
 - oh, and some FE wouldn't harm
+
+## why
+- is `address.city` NULLable?
