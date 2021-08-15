@@ -52,6 +52,7 @@ public class Item {
     public Integer getTotal() {
         return total;
     }
+    @JsonIgnore
     public Integer getOrdering() {
         return ordering;
     }
@@ -59,6 +60,7 @@ public class Item {
         this.id = id;
     }
     public void setInvoice(Invoice invoice) {
+        ordering = invoice.getItems().size();
         this.invoice = invoice;
     }
     public void setName(String name) {
@@ -73,7 +75,6 @@ public class Item {
     public void setTotal(Integer total) {
         this.total = total;
     }
-    @JsonIgnore
     public void setOrdering(Integer ordering) {
         this.ordering = ordering;
     }

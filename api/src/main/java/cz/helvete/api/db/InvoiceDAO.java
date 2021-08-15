@@ -12,9 +12,15 @@ public class InvoiceDAO {
     @Inject
     private EntityManager em;
 
+    // TODO: fix ordering
     public Invoice findById(Integer id) {
-        return em
-            .createQuery("SELECT i FROM Invoice i WHERE i.id = :id", Invoice.class)
+        return em.createQuery(
+                "SELECT i FROM Invoice i" +
+                " LEFT JOIN i.items t" +
+                " WHERE i.id = :id" +
+                "  AND i.deletedAt IS NULL" +
+                " ORDER BY t.ordering DESC",
+                Invoice.class)
             .setParameter("id", id)
             .getResultList()
             .stream()
@@ -23,6 +29,21 @@ public class InvoiceDAO {
     }
 
     public List<Invoice> getAll() {
-        return em.createQuery("SELECT i FROM Invoice i", Invoice.class).getResultList();
+        return em.createQuery(
+                "SELECT i FROM Invoice i",
+                Invoice.class)
+            .getResultList();
+    }
+
+    public Invoice persist(Invoice invoice) {
+        em.persist(invoice);
+        em.flush();
+        return invoice;
+    }
+
+    public Invoice merge(Invoice invoice) {
+        invoice = em.merge(invoice);
+        em.flush();
+        return invoice;
     }
 }

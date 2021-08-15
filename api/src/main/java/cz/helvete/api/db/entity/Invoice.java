@@ -8,6 +8,7 @@ import cz.helvete.api.util.LocalDateTimeSerializer;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,6 +19,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="invoice")
@@ -49,14 +51,19 @@ public class Invoice extends BaseEntity {
     private String notes;
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
+    @Column(name = "created_at") // TODO: generalize
+    private LocalDateTime createdAt = LocalDateTime.now();
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @Column(name = "deleted_at")
     private LocalDateTime deletedAt;
 
-    @OneToMany(mappedBy = "invoice")
+    @Transient
+    private Integer acceptorId;
+    @Transient
+    private Integer providerId;
+
+    @OneToMany(mappedBy = "invoice", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Item> items = new ArrayList<>();
 
     public Integer getId() {
@@ -125,5 +132,11 @@ public class Invoice extends BaseEntity {
     }
     public void setItems(List<Item> items) {
         this.items = items;
+    }
+    public Integer getAcceptorId() {
+        return acceptorId;
+    }
+    public Integer getProviderId() {
+        return providerId;
     }
 }
