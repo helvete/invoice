@@ -18,12 +18,14 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="subject")
-public class Subject {
+public class Subject extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
+    @Column(length = 64, name = "name")
+    private String name;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "address_id")
     private Address address;
@@ -48,6 +50,9 @@ public class Subject {
 
     public Integer getId() {
         return id;
+    }
+    public String getName() {
+        return name;
     }
     public Address getAddress() {
         return address;
@@ -76,6 +81,9 @@ public class Subject {
     }
     public void setId(Integer id) {
         this.id = id;
+    }
+    public void setName(String name) {
+        this.name = name;
     }
     public void setAddress(Address address) {
         this.address = address;

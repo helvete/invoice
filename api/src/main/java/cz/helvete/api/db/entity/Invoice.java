@@ -21,7 +21,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="invoice")
-public class Invoice {
+public class Invoice extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
