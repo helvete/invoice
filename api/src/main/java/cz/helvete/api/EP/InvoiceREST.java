@@ -27,7 +27,9 @@ public class InvoiceREST {
     @GET
     @AllowUnauthenticated
     public Response getAll() {
-        return Response.ok().entity(invoiceDAO.getAll()).build();
+        return new BaseResponse(ResponseResultCode.OK)
+            .data(invoiceDAO.getAll())
+            .build();
     }
 
     @GET
