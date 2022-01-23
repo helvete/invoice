@@ -27,8 +27,20 @@ public class SubjectDAO {
 
     public List<Subject> getAll() {
         return em.createQuery(
-                "SELECT s FROM Subject i",
+                "SELECT s FROM Subject s",
                 Subject.class)
             .getResultList();
+    }
+
+    public Subject persist(Subject subject) {
+        em.persist(subject);
+        em.flush();
+        return subject;
+    }
+
+    public Subject merge(Subject subject) {
+        subject = em.merge(subject);
+        em.flush();
+        return subject;
     }
 }
