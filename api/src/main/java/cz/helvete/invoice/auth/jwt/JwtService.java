@@ -3,30 +3,24 @@ package cz.helvete.invoice.auth.jwt;
 import cz.helvete.invoice.auth.jwt.entity.ClaimsEntity;
 import cz.helvete.invoice.auth.jwt.entity.ParserResultEnum;
 import cz.helvete.invoice.auth.jwt.entity.TokenEntity;
-
-import java.util.logging.Logger;
-import java.util.logging.Level;
-import java.util.Base64;
-import java.security.Key;
-import java.util.logging.Logger;
+import cz.helvete.invoice.config.Config;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.MalformedJwtException;
+import io.jsonwebtoken.RequiredTypeException;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.UnsupportedJwtException;
+import io.jsonwebtoken.security.Keys;
+import io.jsonwebtoken.security.SignatureException;
 import java.lang.IllegalArgumentException;
 import java.time.LocalDateTime;
-import javax.inject.Inject;
+import java.util.Base64;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.Logger;
 import javax.crypto.SecretKey;
-
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.Jws;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.JwtException;
-import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.security.Keys;
-import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.UnsupportedJwtException;
-import io.jsonwebtoken.MalformedJwtException;
-import io.jsonwebtoken.security.SignatureException;
-import io.jsonwebtoken.RequiredTypeException;
-
-import cz.helvete.invoice.config.Config;
+import javax.inject.Inject;
 
 public class JwtService {
 

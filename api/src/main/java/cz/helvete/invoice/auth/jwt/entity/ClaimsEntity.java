@@ -1,7 +1,7 @@
 package cz.helvete.invoice.auth.jwt.entity;
 
-import java.util.Date;
 import io.jsonwebtoken.Claims;
+import java.util.Date;
 
 public class ClaimsEntity {
 

@@ -1,22 +1,20 @@
 package cz.helvete.invoice.auth;
 
-import java.util.logging.Logger;
-import java.io.IOException;
-import javax.enterprise.inject.spi.CDI;
-import javax.ws.rs.container.ContainerRequestContext;
-import javax.ws.rs.container.ContainerRequestFilter;
-import javax.ws.rs.container.PreMatching;
-import javax.ws.rs.Priorities;
-import javax.ws.rs.core.Response;
-import javax.inject.Inject;
-import javax.annotation.Priority;
-import javax.enterprise.context.ApplicationScoped;
-
+import cz.helvete.invoice.auth.entity.AuthUser;
 import cz.helvete.invoice.auth.jwt.JwtService;
 import cz.helvete.invoice.auth.jwt.entity.ClaimsEntity;
 import cz.helvete.invoice.auth.jwt.entity.ParserResultEnum;
-
-import cz.helvete.invoice.auth.entity.AuthUser;
+import java.io.IOException;
+import java.util.logging.Logger;
+import javax.annotation.Priority;
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.spi.CDI;
+import javax.inject.Inject;
+import javax.ws.rs.Priorities;
+import javax.ws.rs.container.ContainerRequestContext;
+import javax.ws.rs.container.ContainerRequestFilter;
+import javax.ws.rs.container.PreMatching;
+import javax.ws.rs.core.Response;
 
 @ApplicationScoped
 @PreMatching

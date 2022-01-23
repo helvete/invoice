@@ -1,9 +1,9 @@
 package cz.helvete.invoice.auth;
 
 import cz.helvete.invoice.config.Config;
-import org.mindrot.jbcrypt.BCrypt;
-import javax.inject.Inject;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
+import org.mindrot.jbcrypt.BCrypt;
 
 @Stateless
 public class SecurityService {

@@ -1,11 +1,10 @@
 package cz.helvete.invoice.auth.jwt.entity;
 
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Date;
-import java.lang.System;
-
 import io.jsonwebtoken.Claims;
+import java.lang.System;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import org.apache.commons.codec.digest.DigestUtils;
 
 public class TokenEntity {

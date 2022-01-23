@@ -1,9 +1,8 @@
 package cz.helvete.invoice;
 
-import org.flywaydb.core.Flyway;
-import org.flywaydb.core.api.MigrationInfo;
-import org.flywaydb.core.api.configuration.FluentConfiguration;
-
+import java.io.InputStream;
+import java.util.Properties;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.ejb.EJBException;
@@ -11,9 +10,9 @@ import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
 import javax.sql.DataSource;
-import java.io.InputStream;
-import java.util.Properties;
-import java.util.logging.Logger;
+import org.flywaydb.core.Flyway;
+import org.flywaydb.core.api.MigrationInfo;
+import org.flywaydb.core.api.configuration.FluentConfiguration;
 
 @Startup
 @Singleton
