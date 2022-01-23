@@ -27,7 +27,8 @@ public class AppConfig {
             xPathfactory = XPathFactory.newInstance();
             xpath = xPathfactory.newXPath();
         } catch (Exception e) {
-            throw new IllegalArgumentException("Problem loading config.xml, application cannot start ");
+            throw new IllegalArgumentException(
+                    "Problem loading config.xml, application cannot start ");
         }
     }
 

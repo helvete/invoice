@@ -1,7 +1,7 @@
 package cz.helvete.invoice.rest;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,17 +21,13 @@ public class AmendResponseFilter implements ContainerResponseFilter {
             ContainerRequestContext requestContext,
             ContainerResponseContext responseContext
     ) throws IOException {
-        List<HateoasLink> hl = new ArrayList<>();
-        hl.add(new HateoasLink());
-
         try {
             Object o = responseContext.getEntity();
             if (o instanceof LinksEnhanced) {
-                ((LinksEnhanced)responseContext.getEntity()).setLinks(hl);
+                setLinks((LinksEnhanced)responseContext.getEntity(), requestContext);
             } else if (o instanceof List) {
-                for (LinksEnhanced l : (List<LinksEnhanced>)responseContext.getEntity()) {
-                    l.setLinks(hl);
-                }
+                ((List<LinksEnhanced>)responseContext.getEntity())
+                    .forEach(i -> setLinks(i, requestContext));
             } else {
                 return;
             }
@@ -39,5 +35,15 @@ public class AmendResponseFilter implements ContainerResponseFilter {
             // just log, do not break anything
             logger.log(Level.SEVERE, "Unknown response type", cce);
         }
+    }
+
+    private void setLinks(
+            LinksEnhanced linksEnhanced,
+            ContainerRequestContext requestContext
+    ) {
+        List<HateoasLink> hateoasLinks = HateoasResolver.resolve(
+                requestContext.getUriInfo().getPath(),
+                Arrays.asList(String.valueOf(linksEnhanced.getId())));
+        linksEnhanced.setLinks(hateoasLinks);
     }
 }

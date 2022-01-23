@@ -8,6 +8,7 @@ invoice application
 - SSL error
 - auth + ownership
 - error exceptions
+- hateoas setup
 - JsonIgnore
 - upgrade flyway + hookup schema, effective role
 - oh, and some FE wouldn't harm
