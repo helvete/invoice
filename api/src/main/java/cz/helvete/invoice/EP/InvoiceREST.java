@@ -6,9 +6,11 @@ import cz.helvete.invoice.db.SubjectDAO;
 import cz.helvete.invoice.db.entity.Invoice;
 import cz.helvete.invoice.db.entity.Item;
 import cz.helvete.invoice.db.entity.Subject;
+import cz.helvete.invoice.entity.InvoiceBrief;
 import cz.helvete.invoice.rest.AppException;
 import cz.helvete.invoice.rest.ResponseResultCode;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -35,8 +37,12 @@ public class InvoiceREST {
 
     @GET
     @AllowUnauthenticated
-    public List<Invoice> getAll() {
-        return invoiceDAO.getAll();
+    public List<InvoiceBrief> getAll() {
+        return invoiceDAO
+            .getAll()
+            .stream()
+            .map(i -> new InvoiceBrief(i))
+            .collect(Collectors.toList());
     }
 
     @GET

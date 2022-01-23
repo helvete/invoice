@@ -1,7 +1,7 @@
 package cz.helvete.invoice.EP;
 
 import cz.helvete.invoice.auth.AllowUnauthenticated;
-import cz.helvete.invoice.rest.RootInfo;
+import cz.helvete.invoice.entity.RootInfo;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

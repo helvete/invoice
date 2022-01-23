@@ -1,0 +1,2 @@
+ALTER TABLE address
+    ALTER COLUMN city SET NOT NULL;

@@ -11,7 +11,6 @@ invoice application
 - hateoas setup
 - JsonIgnore
 - upgrade flyway + hookup schema, effective role
+- upgrade payara, also test micro variant
+- invoice state (would it be useful?)
 - oh, and some FE wouldn't harm
-
-## why
-- is `address.city` NULLable?

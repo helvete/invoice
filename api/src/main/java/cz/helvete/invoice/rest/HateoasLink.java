@@ -1,5 +1,6 @@
 package cz.helvete.invoice.rest;
 
+import java.util.Arrays;
 import java.util.List;
 import javax.ws.rs.HttpMethod;
 
@@ -22,6 +23,14 @@ public class HateoasLink {
 
     public HateoasLink(String name, String link, List<String> tokens) {
         this(name, link, tokens, HttpMethod.GET);
+    }
+
+    public HateoasLink(String name, String link, String method) {
+        this(name, link, Arrays.asList(), method);
+    }
+
+    public HateoasLink(String name, String link) {
+        this(name, link, Arrays.asList());
     }
 
     private String resolve(String template, List<String> tokens) {

@@ -1,5 +1,6 @@
-package cz.helvete.invoice.rest;
+package cz.helvete.invoice.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import cz.helvete.invoice.db.entity.BaseEntity;
 
 public class RootInfo extends BaseEntity {
@@ -11,10 +12,10 @@ public class RootInfo extends BaseEntity {
         this.userName = userName;
     }
 
+    @JsonIgnore
     public Integer getId() {
-        return -1; // TODO: what to do w/ this?
+        return -1;
     }
-
     public String getApplication() {
         return application;
     }
