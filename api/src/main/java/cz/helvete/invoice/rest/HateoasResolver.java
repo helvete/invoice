@@ -45,6 +45,10 @@ public class HateoasResolver {
         return Arrays.asList();
     }
 
+    public static List<HateoasLink> forUnauthorized() {
+        return Arrays.asList(new HateoasLink("Login", "/login", HttpMethod.POST));
+    }
+
     private static String getResourceName(String location) {
         String[] parts = SLASH.split(location);
         for (int i = parts.length - 1; i >= 0; i--) {

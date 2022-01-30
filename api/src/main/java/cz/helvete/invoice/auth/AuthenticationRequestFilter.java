@@ -4,6 +4,8 @@ import cz.helvete.invoice.auth.entity.AuthUser;
 import cz.helvete.invoice.auth.jwt.JwtService;
 import cz.helvete.invoice.auth.jwt.entity.ClaimsEntity;
 import cz.helvete.invoice.auth.jwt.entity.ParserResultEnum;
+import cz.helvete.invoice.rest.BaseResponse;
+import cz.helvete.invoice.rest.ResponseResultCode;
 import java.io.IOException;
 import java.util.logging.Logger;
 import javax.annotation.Priority;
@@ -14,14 +16,11 @@ import javax.ws.rs.Priorities;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.container.PreMatching;
-import javax.ws.rs.core.Response;
 
 @ApplicationScoped
 @PreMatching
 @Priority(Priorities.AUTHENTICATION)
 public class AuthenticationRequestFilter implements ContainerRequestFilter {
-
-    public static final String JWT_HEADER = "x-jwt-assertion";
 
     @Inject
     private AuthUser user;
@@ -32,11 +31,12 @@ public class AuthenticationRequestFilter implements ContainerRequestFilter {
 
     @Override
     public void filter(ContainerRequestContext requestContext) throws IOException {
-        String authHeader = requestContext.getHeaderString(JWT_HEADER);
+        String authHeader = requestContext.getHeaderString(JwtService.JWT_HEADER);
 
         if (!verifyToken(authHeader)) {
             logger.info("JWT token invalid: 401");
-            requestContext.abortWith(Response.status(401).build());
+            requestContext.abortWith(
+                    new BaseResponse(ResponseResultCode.JWT_INVALID).build());
         }
     }
 

@@ -1,6 +1,5 @@
 package cz.helvete.invoice.EP;
 
-import cz.helvete.invoice.auth.AllowUnauthenticated;
 import cz.helvete.invoice.db.InvoiceDAO;
 import cz.helvete.invoice.db.SubjectDAO;
 import cz.helvete.invoice.db.entity.Invoice;
@@ -36,7 +35,6 @@ public class InvoiceREST {
     private SubjectDAO subjectDAO;
 
     @GET
-    @AllowUnauthenticated
     public List<InvoiceBrief> getAll() {
         return invoiceDAO
             .getAll()
@@ -46,7 +44,6 @@ public class InvoiceREST {
     }
 
     @GET
-    @AllowUnauthenticated
     @Path("/{invoiceId}")
     public Invoice get(@PathParam("invoiceId") Integer invoiceId) throws AppException {
         Invoice invoice = invoiceDAO.findById(invoiceId);
@@ -57,7 +54,6 @@ public class InvoiceREST {
     }
 
     @POST
-    @AllowUnauthenticated
     public Invoice insert(Invoice invoice) throws AppException {
         Subject acceptor = subjectDAO.findById(invoice.getAcceptorId());
         Subject provider = subjectDAO.findById(invoice.getProviderId());
@@ -72,7 +68,6 @@ public class InvoiceREST {
     }
 
     @POST
-    @AllowUnauthenticated
     @Path("/{invoiceId}/item")
     public Invoice addItem(
             @PathParam("invoiceId") Integer invoiceId,
@@ -88,7 +83,6 @@ public class InvoiceREST {
     }
 
     @DELETE
-    @AllowUnauthenticated
     @Path("/{invoiceId}/item/{itemId}")
     public Invoice deleteItem(
             @PathParam("invoiceId") Integer invoiceId,

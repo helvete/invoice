@@ -4,7 +4,7 @@ include .env
 main: drebuild
 
 drebuild: .docker/backend/postgresql-42.2.18.jar
-	COMPOSE_DOCKER_CLI_BUILD=1 docker-compose -f docker-compose.local.yml -p inv up --build --force-recreate -d backend
+	COMPOSE_DOCKER_CLI_BUILD=1 docker-compose -f docker-compose.local.yml -p inv up --build --force-recreate -d
 
 stop:
 	docker-compose -f docker-compose.local.yml -p inv stop

@@ -24,6 +24,8 @@ import javax.inject.Inject;
 
 public class JwtService {
 
+    public static final String JWT_HEADER = "x-jwt-assertion";
+
     @Inject
     @Config("jwt.algorithm")
     private String algo;
@@ -56,9 +58,9 @@ public class JwtService {
         return getJws(new TokenEntity(email, id, validity));
     }
 
-    private String getJws(TokenEntity claims) {
+    public String getJws(TokenEntity claims) {
         logger.info(String.format(
-                    "CPAS: encode token for [%s]:%s @%s",
+                    "JWT: encode token for [%s]:%s @%s",
                     environment,
                     claims.getSub(),
                     LocalDateTime.now()));
@@ -92,7 +94,7 @@ public class JwtService {
         }
         try {
             logger.info(String.format(
-                        "CPAS: decode success for [%s]:%s @%s",
+                        "JWT: decode success for [%s]:%s @%s",
                         environment,
                         token.get(Claims.SUBJECT, Integer.class),
                         LocalDateTime.now()));
@@ -107,10 +109,14 @@ public class JwtService {
         logger.log(
                 Level.WARNING,
                 String.format(
-                    "CPAS: decode failure: [%s] @%s token: %s",
+                    "JWT: decode failure: [%s] @%s token: %s",
                     environment,
                     LocalDateTime.now(),
                     token),
                 e);
+    }
+
+    public Long getValidityMillis() {
+        return Long.parseLong(validityMillis);
     }
 }

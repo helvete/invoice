@@ -184,7 +184,7 @@
             <id>local</id>
             <properties>
                 <build.profile.id>dev</build.profile.id>
-                <bcrypt.rounds>11</bcrypt.rounds>
+                <bcrypt.rounds>13</bcrypt.rounds>
             </properties>
             <build>
                 <plugins>

@@ -1,6 +1,5 @@
 package cz.helvete.invoice.EP;
 
-import cz.helvete.invoice.auth.AllowUnauthenticated;
 import cz.helvete.invoice.db.SubjectDAO;
 import cz.helvete.invoice.db.entity.Subject;
 import cz.helvete.invoice.entity.SubjectBrief;
@@ -26,7 +25,6 @@ public class SubjectREST {
     private SubjectDAO subjectDAO;
 
     @GET
-    @AllowUnauthenticated
     public List<SubjectBrief> getAll() {
         return subjectDAO
             .getAll()
@@ -36,7 +34,6 @@ public class SubjectREST {
     }
 
     @GET
-    @AllowUnauthenticated
     @Path("/{subjectId}")
     public Subject get(@PathParam("subjectId") Integer subjectId) throws AppException {
         Subject subject = subjectDAO.findById(subjectId);
@@ -47,7 +44,6 @@ public class SubjectREST {
     }
 
     @POST
-    @AllowUnauthenticated
     public Subject insert(Subject invoice) throws AppException {
         // TODO Address
         //Subject acceptor = subjectDAO.findById(invoice.getAcceptorId());
