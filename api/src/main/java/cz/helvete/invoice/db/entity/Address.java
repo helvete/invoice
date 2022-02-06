@@ -19,21 +19,21 @@ public class Address extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(nullable = false)
     private Integer id;
-    @Column(length = 64, name = "name")
+    @Column(length = 64)
     private String name;
-    @Column(length = 64, name = "street")
+    @Column(length = 64)
     private String street;
     @Column(length = 8, name = "land_registry_number")
     private String landRegistryNumber;
     @Column(length = 8, name = "house_number")
     private String houseNumber;
-    @Column(length = 64, name = "city")
+    @Column(length = 64)
     private String city;
-    @Column(name = "zip")
-    private Integer zip;
-    @Column(name = "notes")
+    @Column
+    private String zip;
+    @Column
     private String notes;
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
@@ -62,7 +62,7 @@ public class Address extends BaseEntity {
     public String getCity() {
         return city;
     }
-    public Integer getZip() {
+    public String getZip() {
         return zip;
     }
     public String getNotes() {
@@ -93,7 +93,7 @@ public class Address extends BaseEntity {
     public void setCity(String city) {
         this.city = city;
     }
-    public void setZip(Integer zip) {
+    public void setZip(String zip) {
         this.zip = zip;
     }
     public void setNotes(String notes) {

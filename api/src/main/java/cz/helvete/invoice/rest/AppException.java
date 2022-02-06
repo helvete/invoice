@@ -1,6 +1,6 @@
 package cz.helvete.invoice.rest;
 
-public class AppException extends Exception {
+public class AppException extends RuntimeException {
 
     private ResponseResultCode code;
     private Object data;

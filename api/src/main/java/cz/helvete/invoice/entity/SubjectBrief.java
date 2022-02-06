@@ -6,7 +6,7 @@ import cz.helvete.invoice.db.entity.Subject;
 
 public class SubjectBrief extends BaseEntity {
     private transient Integer id;
-    private Integer businessIdnumber;
+    private String businessIdnumber;
     private String name;
 
     public SubjectBrief(Subject subject) {
@@ -19,7 +19,7 @@ public class SubjectBrief extends BaseEntity {
     public Integer getId() {
         return id;
     }
-    public Integer getBusinessIdnumber() {
+    public String getBusinessIdnumber() {
         return businessIdnumber;
     }
     public String getName() {

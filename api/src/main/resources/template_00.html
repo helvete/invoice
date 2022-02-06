@@ -1,0 +1,186 @@
+<html>
+    <head>
+        <style>
+            .b {
+                font-weight: bold;
+            }
+            .l {
+                float: left;
+            }
+            .r {
+                float: right;
+            }
+            .c {
+                clear: both;
+            }
+            .bt {
+                border-top: 1px solid black;
+            }
+            .bb {
+                border-bottom: 1px solid black;
+            }
+            .bbb {
+                border-bottom: 2px solid black;
+            }
+            .bl {
+                border-left: 1px solid black;
+            }
+            .br {
+                border-right: 1px solid black;
+            }
+            .btg {
+                border-top: 1px solid gray;
+            }
+            .bbg {
+                border-bottom: 1px solid gray;
+            }
+            .blg {
+                border-left: 1px solid gray;
+            }
+            .brg {
+                border-right: 1px solid gray;
+            }
+            .small {
+                font-size: 80%;
+            }
+            #s1, #s2 {
+                font-size: 120%;
+            }
+            .sign {
+                height: 150px;
+                vertical-align: top;
+            }
+            body {
+                position: relative;
+            }
+            body div.bottom {
+                position: absolute;
+                bottom: -250px;
+            }
+            body div.right {
+                position: absolute;
+                bottom: -100px;
+            }
+        </style>
+    </head>
+    <body>
+        <span class="b r" id="s2">Faktura č. $number$</span>
+        <span class="b l" id="s1">$provider_name$</span>
+        <br />
+        <br class="c" />
+        <table border="0" cellspacing="0" cellpadding="5" width="100%">
+            <tr>
+                <td colspan="2" class="btg blg">&#160;</td>
+                <td class="btg blg b">Variabilní symbol:</td>
+                <td class="btg brg b">$number$</td>
+            </tr>
+            <tr>
+                <td class="blg" colspan="2">Dodavatel:</td>
+                <td colspan="2" class="bl bt br">Odběratel:</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="blg b">$provider_name$</td>
+                <td colspan="2" class="bl br b">$acceptor_name$</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="blg b">$provider_address$</td>
+                <td colspan="2" class="bl br b">$acceptor_address$</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="blg b">$provider_city$</td>
+                <td colspan="2" class="bl br b">$acceptor_city$</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="blg">&#160;</td>
+                <td colspan="2" class="bl br"></td>
+            </tr>
+            <tr>
+                <td class="blg">IČ:</td>
+                <td class="b">$provider_idnumber$</td>
+                <td class="bl">IČ:</td>
+                <td class="b br">$acceptor_idnumber$</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="blg"></td>
+                <td class="bl bb">DIČ:</td>
+                <td class="bb br">$acceptor_vat_idnumber$</td>
+            </tr>
+            <tr>
+                <td class="blg">Telefon:</td>
+                <td>$provider_phone_number$</td>
+                <td class="blg brg" colspan="2" rowspan="8"></td>
+            </tr>
+            <tr>
+                <td class="blg">Email:</td>
+                <td>$provider_email_address$</td>
+            <tr>
+                <td class="bl bt bb">Číslo účtu:</td>
+                <td class="b bt bb br">$provider_bank_account$</td>
+            </tr>
+            <tr>
+                <td class="blg">Forma úhrady:</td>
+                <td>převodem</td>
+            </tr>
+            <tr>
+                <td class="blg" colspan="2">&#160;</td>
+            </tr>
+            <tr>
+                <td class="blg">Datum vystavení:</td>
+                <td class="b">$issue_date$</td>
+            </tr>
+            <tr>
+                <td class="blg">Datum splatnosti:</td>
+                <td class="b">$due_date$</td>
+            </tr>
+            <tr>
+                <td class="blg bbg" colspan="2">&#160;</td>
+            </tr>
+            <tr>
+                <td class="blg brg" colspan="4">&#160;</td>
+            </tr>
+            <tr>
+                <td class="blg brg" colspan="4">Fakturujeme Vám za dodané zboží či služby:</td>
+            </tr>
+            </tr><!-- TODO: fix this needed stray closing row tag-->
+        </table>
+        <table border="0" cellspacing="0" cellpadding="5" width="100%">
+            <tr>
+                <th class="blg bb" align="left">Označení dodávky</th>
+                <th class="bb" align="right">Počet m.j.</th>
+                <th class="bb" align="right">Cena za m.j.</th>
+                <th class="bb brg" align="right">Celkem</th>
+            </tr>
+            <tr>
+                <td class="blg bbg">Item 1</td>
+                <td class="bbg" align="right">133,33</td>
+                <td class="bbg" align="right">600,00</td>
+                <td class="bbg brg" align="right">80 000,00</td>
+            </tr>
+            <tr>
+                <td class="blg brg" colspan="4">&#160;</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="blg"></td>
+                <td class="bbb b">Celkem k úhradě:</td>
+                <td class="bbb brg b" align="right">$total$</td>
+            </tr>
+        </table>
+        <table border="0" cellspacing="0" cellpadding="5" width="100%">
+            <tr>
+                <td class="blg brg" colspan="2">&#160;</td>
+            </tr>
+            <tr>
+                <td class="sign btg blg bbg">Vystavil:
+                </td>
+                <td class="sign blg btg brg bbg">Převzal:
+                </td>
+            </tr>
+        </table>
+        <div class="right" align="right" style="width: 100%;">
+            Nejsme plátci DPH.
+        </div>
+        <div class="small bottom" align="center" style="width: 100%;">
+            Živnostenský list vydán Obecním živnostenským úřadem v Českých Budějovicích, s č.j.: Ž/6856/2020/ZJ/1035929/5.
+        </div>
+    </body>
+</html>

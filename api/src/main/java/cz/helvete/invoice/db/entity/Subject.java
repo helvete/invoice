@@ -22,19 +22,19 @@ public class Subject extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(nullable = false)
     private Integer id;
-    @Column(length = 64, name = "name")
+    @Column(length = 64)
     private String name;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "address_id")
     private Address address;
     @Column(name = "business_idnumber")
-    private Integer businessIdnumber;
+    private String businessIdnumber;
     @Column(name = "vat_idnumber")
-    private Integer vatIdnumber;
+    private String vatIdnumber;
     @Column(name = "phone_number")
-    private Integer phoneNumber;
+    private String phoneNumber;
     @Column(length = 255, name = "email_address")
     private String emailAddress;
     @Column(length = 64, name = "bank_account")
@@ -57,13 +57,13 @@ public class Subject extends BaseEntity {
     public Address getAddress() {
         return address;
     }
-    public Integer getBusinessIdnumber() {
+    public String getBusinessIdnumber() {
         return businessIdnumber;
     }
-    public Integer getVatIdnumber() {
+    public String getVatIdnumber() {
         return vatIdnumber;
     }
-    public Integer getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
     public String getEmailAddress() {
@@ -88,13 +88,13 @@ public class Subject extends BaseEntity {
     public void setAddress(Address address) {
         this.address = address;
     }
-    public void setBusinessIdnumber(Integer businessIdnumber) {
+    public void setBusinessIdnumber(String businessIdnumber) {
         this.businessIdnumber = businessIdnumber;
     }
-    public void setVatIdnumber(Integer vatIdnumber) {
+    public void setVatIdnumber(String vatIdnumber) {
         this.vatIdnumber = vatIdnumber;
     }
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
     public void setEmailAddress(String emailAddress) {

@@ -35,7 +35,7 @@ public class SubjectREST {
 
     @GET
     @Path("/{subjectId}")
-    public Subject get(@PathParam("subjectId") Integer subjectId) throws AppException {
+    public Subject get(@PathParam("subjectId") Integer subjectId) {
         Subject subject = subjectDAO.findById(subjectId);
         if (subject == null) {
             throw new AppException(ResponseResultCode.NOT_FOUND);
@@ -44,7 +44,7 @@ public class SubjectREST {
     }
 
     @POST
-    public Subject insert(Subject invoice) throws AppException {
+    public Subject insert(Subject invoice) {
         // TODO Address
         //Subject acceptor = subjectDAO.findById(invoice.getAcceptorId());
         //Subject provider = subjectDAO.findById(invoice.getProviderId());

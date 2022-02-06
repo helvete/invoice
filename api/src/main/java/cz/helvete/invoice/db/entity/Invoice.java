@@ -27,9 +27,9 @@ public class Invoice extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(nullable = false)
     private Integer id;
-    @Column(name = "number")
+    @Column
     private Integer number;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "provider_id")
@@ -45,9 +45,9 @@ public class Invoice extends BaseEntity {
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @Column(name = "due_date")
     private LocalDateTime dueDate;
-    @Column(name = "total")
+    @Column
     private Integer total;
-    @Column(name = "notes")
+    @Column
     private String notes;
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
