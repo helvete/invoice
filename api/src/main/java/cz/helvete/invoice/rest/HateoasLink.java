@@ -8,6 +8,7 @@ public class HateoasLink {
     private String name;
     private String link;
     private String method;
+    private boolean autoredir = false;
     // TODO: payload description
 
     public HateoasLink(
@@ -33,6 +34,16 @@ public class HateoasLink {
         this(name, link, Arrays.asList());
     }
 
+    public HateoasLink(String name, String link, boolean autoredir) {
+        this(name, link, Arrays.asList());
+        this.autoredir = autoredir;
+    }
+
+    public HateoasLink(String name, String link, String method, boolean autoredir) {
+        this(name, link, Arrays.asList(), method);
+        this.autoredir = autoredir;
+    }
+
     private String resolve(String template, List<String> tokens) {
         return String.format(template, tokens.toArray());
     }
@@ -45,5 +56,8 @@ public class HateoasLink {
     }
     public String getMethod() {
         return method;
+    }
+    public boolean getAutoredir() {
+        return autoredir;
     }
 }

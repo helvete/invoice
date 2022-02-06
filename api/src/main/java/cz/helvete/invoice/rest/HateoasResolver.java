@@ -10,6 +10,7 @@ public class HateoasResolver {
     private static final Pattern L1 = Pattern.compile("^[a-z-]+\\/*$");
     private static final Pattern L2 = Pattern.compile("^[a-z-]+\\/[0-9]+\\/*$");
     private static final Pattern L3 = Pattern.compile("^[a-z-]+\\/[0-9]+\\/.+$");
+    private static final Pattern AUTH = Pattern.compile("^auth\\/.*$");
     private static final Pattern SLASH = Pattern.compile("\\/");
     private static final Pattern NUMERIC = Pattern.compile("^\\d$");
 
@@ -19,6 +20,9 @@ public class HateoasResolver {
     ) {
         // TODO: move to xml schema
         // utilize location enum
+        if (AUTH.matcher(location).matches()) {
+            return Arrays.asList(new HateoasLink("Root", "/", true));
+        }
         if (location.equals("")) {
             return Arrays.asList(
                     new HateoasLink("Invoice list", "/invoice"),
@@ -46,7 +50,8 @@ public class HateoasResolver {
     }
 
     public static List<HateoasLink> forUnauthorized() {
-        return Arrays.asList(new HateoasLink("Login", "/login", HttpMethod.POST));
+        return Arrays.asList(
+                new HateoasLink("Login", "/login", HttpMethod.POST, true));
     }
 
     private static String getResourceName(String location) {

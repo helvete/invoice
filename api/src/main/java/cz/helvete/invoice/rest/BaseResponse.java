@@ -1,14 +1,16 @@
 package cz.helvete.invoice.rest;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import cz.helvete.invoice.db.entity.BaseEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @JsonInclude(Include.NON_NULL)
-public class BaseResponse {
+public class BaseResponse extends BaseEntity {
 
     private int status;
     private String code;
@@ -49,6 +51,11 @@ public class BaseResponse {
     }
     public Object getData() {
         return data;
+    }
+
+    @JsonIgnore
+    public Integer getId() {
+        return -1;
     }
 
     /**

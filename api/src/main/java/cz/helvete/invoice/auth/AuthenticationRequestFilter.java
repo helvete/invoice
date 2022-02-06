@@ -34,7 +34,7 @@ public class AuthenticationRequestFilter implements ContainerRequestFilter {
         String authHeader = requestContext.getHeaderString(JwtService.JWT_HEADER);
 
         if (!verifyToken(authHeader)) {
-            logger.info("JWT token invalid: 401");
+            logger.info(String.format("JWT invalid: [%s]", authHeader));
             requestContext.abortWith(
                     new BaseResponse(ResponseResultCode.JWT_INVALID).build());
         }

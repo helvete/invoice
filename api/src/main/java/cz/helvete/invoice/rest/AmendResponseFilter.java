@@ -46,8 +46,7 @@ public class AmendResponseFilter implements ContainerResponseFilter {
             LinksEnhanced linksEnhanced,
             ContainerRequestContext requestContext
     ) {
-        // TODO check email emptiness
-        if (user == null) {
+        if (user.getEmail() == null) {
             linksEnhanced.setLinks(HateoasResolver.forUnauthorized());
             return;
         }
