@@ -96,7 +96,7 @@ public class InvoiceREST {
         if (invoice == null) {
             throw new AppException(ResponseResultCode.NOT_FOUND);
         }
-        // TODO: improve algorithm
+        // TODO: improve this algorithm
         int index = 0;
         for (Item item : invoice.getItems()) {
             if (item.getId().equals(itemId)) {

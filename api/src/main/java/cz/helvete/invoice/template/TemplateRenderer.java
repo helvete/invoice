@@ -1,5 +1,6 @@
 package cz.helvete.invoice.template;
 
+import com.lowagie.text.pdf.BaseFont;
 import cz.helvete.invoice.db.entity.Invoice;
 import cz.helvete.invoice.entity.InvoiceTemplate;
 import cz.helvete.invoice.rest.AppException;
@@ -17,6 +18,7 @@ import java.util.logging.Logger;
 import javax.inject.Inject;
 import java.io.InputStream;
 import org.stringtemplate.v4.ST;
+import org.xhtmlrenderer.pdf.ITextFontResolver;
 import org.xhtmlrenderer.pdf.ITextRenderer;
 
 public class TemplateRenderer {
@@ -54,6 +56,11 @@ public class TemplateRenderer {
 
     private ByteArrayOutputStream generatePdf(String html) throws IOException {
         ITextRenderer renderer = new ITextRenderer();
+        ITextFontResolver resolver = renderer.getFontResolver();
+        resolver.addFont(
+                getClass().getResource("/fonts/NotoSerif-Regular.ttf").getPath(),
+                BaseFont.IDENTITY_H,
+                BaseFont.EMBEDDED);
         renderer.setDocumentFromString(html);
         renderer.layout();
         try (ByteArrayOutputStream baos = new ByteArrayOutputStream(html.length())) {
