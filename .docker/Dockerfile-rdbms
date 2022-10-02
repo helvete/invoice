@@ -1,4 +1,4 @@
-FROM postgres:10-alpine
+FROM postgres:14-alpine
 
 ENV LANG cs_CZ.utf8
 ENV TZ='Etc/UTC'

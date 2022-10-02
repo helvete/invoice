@@ -22,7 +22,7 @@ ldbconn:
 	@PGPASSWORD=${PG_PASSWORD} psql -h 127.1 -p 5430 -U ${PG_USER} ${PG_DATABASE}
 
 dpcatlog:
-	docker-compose -f docker-compose.local.yml -p inv exec backend cat /opt/payara/appserver/glassfish/domains/production/logs/server.log
+	docker-compose -f docker-compose.local.yml -p inv exec backend cat /opt/payara/appserver/glassfish/domains/domain1/logs/server.log
 
 .docker/backend/postgresql-42.2.18.jar:
 	wget https://jdbc.postgresql.org/download/postgresql-42.2.18.jar -O.docker/backend/postgresql-42.2.18.jar
