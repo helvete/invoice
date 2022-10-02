@@ -17,20 +17,20 @@ public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(nullable = false)
     private Integer id;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "invoice_id")
     private Invoice invoice;
-    @Column(length = 255, name = "name")
+    @Column(length = 255)
     private String name;
     @Column(name = "price_per_unit")
     private Integer pricePerUnit;
     @Column(name = "units_count")
     private Double unitsCount;
-    @Column(name = "total")
+    @Column
     private Integer total;
-    @Column(name = "ordering")
+    @Column
     private Integer ordering;
 
     public Integer getId() {

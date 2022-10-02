@@ -4,7 +4,7 @@ import cz.helvete.invoice.db.entity.Invoice;
 import cz.helvete.invoice.util.LocalDateTimeFormat;
 import java.time.format.DateTimeFormatter;
 import java.text.NumberFormat;
-import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
@@ -25,6 +25,7 @@ public enum InvoiceTemplate {
     ACCEPTOR_VAT_ID_NUMBER("acceptor_vat_idnumber"),
     ISSUE_DATE("issue_date"),
     DUE_DATE("due_date"),
+    ITEM_ROWS("item_rows"),
     TOTAL("total");
 
     private static DateTimeFormatter formatter
@@ -41,35 +42,40 @@ public enum InvoiceTemplate {
     }
 
     // TODO: second attr + retrieve using reflection?
-    // TODO: handle invoice items
-    // TODO: rename nad move under template dir
-    public static Map<InvoiceTemplate, String> loadTokens(Invoice invoice) {
-        Map<InvoiceTemplate, String> map = new EnumMap<>(InvoiceTemplate.class);
-        map.put(NUMBER, String.valueOf(invoice.getNumber()));
-        map.put(ISSUE_DATE, invoice.getIssuedAt().format(formatter));
-        map.put(DUE_DATE, invoice.getDueDate().format(formatter));
-        map.put(TOTAL, numberFormat(invoice.getTotal()));
-        map.put(PROVIDER_NAME, invoice.getProvider().getName());
-        map.put(PROVIDER_ADDRESS, String.format("%s %s",
+    // TODO: rename and move under template dir
+    public static Map<String, String> loadTokens(Invoice invoice, String itemRows) {
+        Map<String, String> map = new HashMap<>();
+        map.put(NUMBER.getToken(), String.valueOf(invoice.getNumber()));
+        map.put(ISSUE_DATE.getToken(), invoice.getIssuedAt().format(formatter));
+        map.put(DUE_DATE.getToken(), invoice.getDueDate().format(formatter));
+        map.put(TOTAL.getToken(), numberFormat(invoice.getTotal()));
+        map.put(PROVIDER_NAME.getToken(), invoice.getProvider().getName());
+        map.put(PROVIDER_ADDRESS.getToken(), String.format("%s %s",
                     invoice.getProvider().getAddress().getStreet(),
                     invoice.getProvider().getAddress().getLandRegistryNumber()));
-        map.put(PROVIDER_CITY, String.format("%s %s",
+        map.put(PROVIDER_CITY.getToken(), String.format("%s %s",
                     formatZip(invoice.getProvider().getAddress().getZip()),
                     invoice.getProvider().getAddress().getCity()));
-        map.put(PROVIDER_ID_NUMBER, invoice.getProvider().getBusinessIdnumber());
-        map.put(PROVIDER_PHONE_NUMBER,
+        map.put(PROVIDER_ID_NUMBER.getToken(),
+                invoice.getProvider().getBusinessIdnumber());
+        map.put(PROVIDER_PHONE_NUMBER.getToken(),
                 formatPhoneNumber(invoice.getProvider().getPhoneNumber()));
-        map.put(PROVIDER_EMAIL_ADDRESS, invoice.getProvider().getEmailAddress());
-        map.put(PROVIDER_BANK_ACCOUNT, invoice.getProvider().getBankAccount());
-        map.put(ACCEPTOR_NAME, invoice.getAcceptor().getName());
-        map.put(ACCEPTOR_ADDRESS, String.format("%s %s",
+        map.put(PROVIDER_EMAIL_ADDRESS.getToken(),
+                invoice.getProvider().getEmailAddress());
+        map.put(PROVIDER_BANK_ACCOUNT.getToken(),
+                invoice.getProvider().getBankAccount());
+        map.put(ACCEPTOR_NAME.getToken(), invoice.getAcceptor().getName());
+        map.put(ACCEPTOR_ADDRESS.getToken(), String.format("%s %s",
                     invoice.getAcceptor().getAddress().getStreet(),
                     invoice.getAcceptor().getAddress().getLandRegistryNumber()));
-        map.put(ACCEPTOR_CITY, String.format("%s %s",
+        map.put(ACCEPTOR_CITY.getToken(), String.format("%s %s",
                     formatZip(invoice.getAcceptor().getAddress().getZip()),
                     invoice.getAcceptor().getAddress().getCity()));
-        map.put(ACCEPTOR_ID_NUMBER, invoice.getAcceptor().getBusinessIdnumber());
-        map.put(ACCEPTOR_VAT_ID_NUMBER, invoice.getAcceptor().getVatIdnumber());
+        map.put(ACCEPTOR_ID_NUMBER.getToken(),
+                invoice.getAcceptor().getBusinessIdnumber());
+        map.put(ACCEPTOR_VAT_ID_NUMBER.getToken(),
+                invoice.getAcceptor().getVatIdnumber());
+        map.put(ITEM_ROWS.getToken(), itemRows);
         return map;
     }
 
