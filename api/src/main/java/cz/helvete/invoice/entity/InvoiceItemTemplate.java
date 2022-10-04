@@ -34,15 +34,13 @@ public enum InvoiceItemTemplate {
     }
 
     private static String numberFormat(Integer number) {
-        double krones = number / 100.00;
-        return NumberFormat
-            .getCurrencyInstance(new Locale("cs", "CZ"))
-            .format(krones);
+        return InvoiceTemplate.numberFormat(number);
     }
 
     private static String numberFormat(double number) {
-        return NumberFormat
-            .getInstance(new Locale("cs", "CZ"))
-            .format(number);
+        NumberFormat nf = NumberFormat.getInstance(new Locale("cs", "CZ"));
+        nf.setMinimumFractionDigits(2);
+        nf.setMaximumFractionDigits(2);
+        return nf.format(number);
     }
 }

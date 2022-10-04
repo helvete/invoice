@@ -95,10 +95,11 @@ public enum InvoiceTemplate {
             + " " + phoneNumber.substring(6, 9);
     }
 
-    private static String numberFormat(Integer number) {
+    public static String numberFormat(Integer number) {
         double krones = number / 100.00;
-        return NumberFormat
-            .getCurrencyInstance(new Locale("cs", "CZ"))
-            .format(krones);
+        NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("cs", "CZ"));
+        nf.setMinimumFractionDigits(2);
+        nf.setMaximumFractionDigits(2);
+        return nf.format(krones);
     }
 }
