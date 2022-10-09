@@ -51,7 +51,7 @@ public class HateoasResolver {
 
     public static List<HateoasLink> forUnauthorized() {
         return Arrays.asList(
-                new HateoasLink("Login", "/login", HttpMethod.POST, true));
+                new HateoasLink("Login", "/login", HttpMethod.POST, true)); // TODO: redir
     }
 
     private static String getResourceName(String location) {

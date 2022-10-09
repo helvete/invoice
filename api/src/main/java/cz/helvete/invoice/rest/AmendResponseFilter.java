@@ -53,6 +53,6 @@ public class AmendResponseFilter implements ContainerResponseFilter {
         List<HateoasLink> hateoasLinks = HateoasResolver.resolve(
                 requestContext.getUriInfo().getPath(),
                 Arrays.asList(String.valueOf(linksEnhanced.getId())));
-        linksEnhanced.setLinks(hateoasLinks);
+        linksEnhanced.getLinks().addAll(hateoasLinks);
     }
 }

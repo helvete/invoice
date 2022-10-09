@@ -22,6 +22,11 @@ public class HateoasLink {
         this.method = method;
     }
 
+    public HateoasLink(String name, String link, List<String> tokens, boolean autoredir) {
+        this(name, link, tokens, HttpMethod.GET);
+        this.autoredir = autoredir;
+    }
+
     public HateoasLink(String name, String link, List<String> tokens) {
         this(name, link, tokens, HttpMethod.GET);
     }

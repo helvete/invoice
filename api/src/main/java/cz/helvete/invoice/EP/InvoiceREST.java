@@ -1,5 +1,6 @@
 package cz.helvete.invoice.EP;
 
+import cz.helvete.invoice.auth.AllowUnauthenticated;
 import cz.helvete.invoice.db.InvoiceDAO;
 import cz.helvete.invoice.db.SubjectDAO;
 import cz.helvete.invoice.db.entity.Invoice;
@@ -125,6 +126,7 @@ public class InvoiceREST {
 
     @GET
     @Path("/{invoiceId}/pdf")
+    @AllowUnauthenticated //TODO!
     @Produces({MediaType.APPLICATION_OCTET_STREAM, MediaType.APPLICATION_JSON})
     public Response pdf(@PathParam("invoiceId") Integer invoiceId) {
         Invoice invoice = invoiceDAO.findById(invoiceId);
