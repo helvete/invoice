@@ -1,0 +1,3 @@
+[submodule "autofront"]
+	path = autofront
+	url = ssh://git@github.com/helvete/autofront.git

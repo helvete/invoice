@@ -17,6 +17,7 @@ ARG APP_ENV
 ARG JWT_KEY_STRING
 
 COPY ./api/src /base/api/src
+COPY ./autofront/src/* /base/api/src/main/webapp/
 
 RUN --mount=type=cache,target=/root/.m2 \
     mvn -pl api clean package -Dproject.build.sourceEncoding=UTF-8 -P ${APP_ENV:-prod}
