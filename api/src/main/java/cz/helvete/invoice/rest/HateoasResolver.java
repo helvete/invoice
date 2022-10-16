@@ -10,7 +10,7 @@ public class HateoasResolver {
     private static final Pattern L1 = Pattern.compile("^[a-z-]+\\/*$");
     private static final Pattern L2 = Pattern.compile("^[a-z-]+\\/[0-9]+\\/*$");
     private static final Pattern L3 = Pattern.compile("^[a-z-]+\\/[0-9]+\\/.+$");
-    private static final Pattern AUTH = Pattern.compile("^auth\\/.*$");
+    private static final Pattern AUTH = Pattern.compile("^login\\.*$");
     private static final Pattern SLASH = Pattern.compile("\\/");
     private static final Pattern NUMERIC = Pattern.compile("^\\d$");
 

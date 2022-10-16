@@ -1,5 +1,6 @@
 package cz.helvete.invoice.auth;
 
+import cz.helvete.invoice.auth.entity.AuthUser;
 import cz.helvete.invoice.auth.jwt.JwtService;
 import cz.helvete.invoice.auth.jwt.entity.TokenEntity;
 import cz.helvete.invoice.db.AccountDAO;
@@ -24,6 +25,9 @@ public class AuthService {
     @Inject
     private AccountDAO accountDAO;
 
+    @Inject
+    private AuthUser user;
+
     public AuthResponse login(AuthRequest request) throws AppException {
         return new AuthResponse(
                 jwtService.getJws(
@@ -40,6 +44,7 @@ public class AuthService {
         if (!securityService.checkPassword(request.getPassword(), acc.getPassword())) {
             throw new AppException(ResponseResultCode.INVALID_CREDENTIALS);
         }
+        user.setEmail(request.getEmail());
         return acc;
     }
 

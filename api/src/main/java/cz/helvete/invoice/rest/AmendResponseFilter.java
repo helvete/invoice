@@ -16,7 +16,7 @@ import javax.ws.rs.ext.Provider;
 public class AmendResponseFilter implements ContainerResponseFilter {
 
     private static Logger logger = Logger.getLogger(
-            InputLoggerRequestFilter.class.getName());
+            AmendResponseFilter.class.getName());
 
     @Inject
     private AuthUser user;
