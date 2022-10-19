@@ -19,7 +19,7 @@ ddcli:
 	docker-compose -p inv exec rdbms sh
 
 ldbconn:
-	@PGPASSWORD=${PG_PASSWORD} psql -h 127.1 -p 5430 -U ${PG_USER} ${PG_DATABASE}
+	@PGPASSWORD=${PG_PASSWORD} psql -h 127.1 -p 5427 -U ${PG_USER} ${PG_DATABASE}
 
 dpcatlog:
 	docker-compose  -p inv exec backend cat /opt/payara/appserver/glassfish/domains/domain1/logs/server.log

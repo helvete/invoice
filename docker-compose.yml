@@ -37,7 +37,7 @@ services:
     expose:
       - "5432"
     ports:
-      - "5430:5432"
+      - "5427:5432"
     volumes:
       - rdbms:/var/lib/postgresql/data
 volumes:
