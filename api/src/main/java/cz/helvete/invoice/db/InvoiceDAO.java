@@ -30,7 +30,7 @@ public class InvoiceDAO {
 
     public List<Invoice> getAll() {
         return em.createQuery(
-                "SELECT i FROM Invoice i",
+                "SELECT i FROM Invoice i ORDER BY i.issuedAt ASC",
                 Invoice.class)
             .getResultList();
     }
