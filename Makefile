@@ -3,7 +3,7 @@ include .env
 
 main: drebuild
 
-drebuild: .docker/backend/postgresql-42.2.18.jar
+drebuild: .docker/backend/postgresql-42.2.18.jar submodule-update
 	COMPOSE_DOCKER_CLI_BUILD=1 docker-compose -p inv up --build --force-recreate -d
 
 stop:
@@ -27,8 +27,11 @@ dpcatlog:
 .docker/backend/postgresql-42.2.18.jar:
 	wget https://jdbc.postgresql.org/download/postgresql-42.2.18.jar -O.docker/backend/postgresql-42.2.18.jar
 
-submodule-update:
+submodule-fetch:
 	git submodule foreach 'git pull origin master'
+
+submodule-update:
+	git submodule update
 
 
 ####################################################
