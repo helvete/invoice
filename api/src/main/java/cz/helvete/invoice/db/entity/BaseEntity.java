@@ -7,9 +7,11 @@ import java.util.List;
 
 public abstract class BaseEntity implements LinksEnhanced {
 
-    private List<HateoasLink> links = new ArrayList<>();
+    private List<HateoasLink> links;
 
     public List<HateoasLink> getLinks() {
+        if (links == null)
+            links = new ArrayList<>();
         return links;
     }
 
