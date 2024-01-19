@@ -27,6 +27,9 @@ dpcatlog:
 .docker/backend/postgresql-42.2.18.jar:
 	wget https://jdbc.postgresql.org/download/postgresql-42.2.18.jar -O.docker/backend/postgresql-42.2.18.jar
 
+submodule-update:
+	git submodule foreach 'git pull origin master'
+
 
 ####################################################
 # ctags for vim
