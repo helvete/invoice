@@ -26,7 +26,8 @@ public enum InvoiceTemplate {
     ISSUE_DATE("issue_date"),
     DUE_DATE("due_date"),
     ITEM_ROWS("item_rows"),
-    TOTAL("total");
+    TOTAL("total"),
+    NOTES("notes");
 
     private static DateTimeFormatter formatter
         = DateTimeFormatter.ofPattern(LocalDateTimeFormat.FORMAT_TEMPLATE);
@@ -76,6 +77,7 @@ public enum InvoiceTemplate {
         map.put(ACCEPTOR_VAT_ID_NUMBER.getToken(),
                 invoice.getAcceptor().getVatIdnumber());
         map.put(ITEM_ROWS.getToken(), itemRows);
+        map.put(NOTES.getToken(), invoice.getNotes());
         return map;
     }
 
